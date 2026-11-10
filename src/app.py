@@ -38,6 +38,78 @@ activities = {
         "schedule": "Mondays, Wednesdays, Fridays, 2:00 PM - 3:00 PM",
         "max_participants": 30,
         "participants": ["john@mergington.edu", "olivia@mergington.edu"]
+    },
+    "Basketball Team": {
+        "description": "Practice basketball skills and compete in school games",
+        "schedule": "Mondays and Wednesdays, 3:30 PM - 5:00 PM",
+        "max_participants": 15,
+        "participants": []
+    },
+    "Track and Field": {
+        "description": "Train for running, jumping, and throwing events",
+        "schedule": "Tuesdays and Thursdays, 3:30 PM - 5:00 PM",
+        "max_participants": 25,
+        "participants": []
+    },
+    "Art Club": {
+        "description": "Explore drawing, painting, and other visual art projects",
+        "schedule": "Mondays, 3:30 PM - 5:00 PM",
+        "max_participants": 20,
+        "participants": []
+    },
+    "Drama Club": {
+        "description": "Develop acting skills and put on school performances",
+        "schedule": "Wednesdays, 3:30 PM - 5:00 PM",
+        "max_participants": 25,
+        "participants": []
+    },
+    "Debate Club": {
+        "description": "Build research, public speaking, and argumentation skills",
+        "schedule": "Tuesdays, 3:30 PM - 4:30 PM",
+        "max_participants": 18,
+        "participants": []
+    },
+    "Volleyball Team": {
+        "description": "Practice teamwork, serves, and match play in volleyball",
+        "schedule": "Wednesdays and Fridays, 3:30 PM - 5:00 PM",
+        "max_participants": 18,
+        "participants": []
+    },
+    "Swimming Club": {
+        "description": "Improve swimming technique and endurance through team practice",
+        "schedule": "Thursdays, 3:30 PM - 5:00 PM",
+        "max_participants": 12,
+        "participants": []
+    },
+    "Photography Club": {
+        "description": "Explore camera techniques, composition, and photo editing",
+        "schedule": "Mondays, 3:30 PM - 5:00 PM",
+        "max_participants": 15,
+        "participants": []
+    },
+    "Music Ensemble": {
+        "description": "Perform and rehearse with a school ensemble covering instruments and vocals",
+        "schedule": "Tuesdays, 3:30 PM - 5:00 PM",
+        "max_participants": 20,
+        "participants": []
+    },
+    "Math Olympiad": {
+        "description": "Solve advanced math problems and prepare for competitions",
+        "schedule": "Fridays, 3:30 PM - 4:30 PM",
+        "max_participants": 16,
+        "participants": []
+    },
+    "Robotics Club": {
+        "description": "Design, build, and program robots for school challenges",
+        "schedule": "Thursdays, 3:30 PM - 5:00 PM",
+        "max_participants": 18,
+        "participants": []
+    },
+    "Science Club": {
+        "description": "Explore scientific questions through experiments and projects",
+        "schedule": "Thursdays, 3:30 PM - 4:30 PM",
+        "max_participants": 20,
+        "participants": []
     }
 }
 
@@ -61,6 +133,10 @@ def signup_for_activity(activity_name: str, email: str):
 
     # Get the specific activity
     activity = activities[activity_name]
+
+    # Validate student is not already signed up
+    if email in activity["participants"]:
+        raise HTTPException(status_code=400, detail="Student is already signed up for this activity")
 
     # Add student
     activity["participants"].append(email)
